@@ -2,7 +2,7 @@
 
 Web Programming with Python and JavaScript
 
-A news site that shows tech and stock news (plus the local news as well). Articles are sorted by popularity, date published and relevancy. 
+A news site which shows tech and stock news (plus the local news as well). Articles are sorted by popularity, date published and relevancy. 
 
 Users are able to lookup specific company news by entering the company ticker symbol. The page also shows the latest stock price, percentage change as well as additional company information.
 
