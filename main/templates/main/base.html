@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	    <link href="{% static 'main/favicon.ico' %}" rel="icon">
+
+	    <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+
+		<title>scoop: {% block title %}{% endblock %}</title>
+	</head>
+
+	<body>
+		<div id="fb-root"></div>
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+		
+		<nav class="navbar navbar-expand-md navbar-light border">
+			<a class="navbar-brand" href="/">
+				<img src="{% static 'main/favicon.ico' %}" width="25" height="25" class="d-inline-block align-middle">
+				<span class="brand">scoop</span>
+				<small class="text-muted">all things tech & stocks</small>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+
+  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav ml-1 mr-auto">
+		      	<li class="nav-item pt-1">
+		      		<a class="nav-link" href="{% url 'finance' %}">finance</a>
+		     	</li>
+
+		     	<li class="nav-item pt-1">
+		     		<a class="nav-link" href="{% url 'singapore' %}">singapore</a>
+		     	</li>
+		    </ul>
+
+		    <form class="form-inline" action="{% url 'search' %}" method="post">
+		    	{% csrf_token %}
+	      		<input name="symbol" class="form-control mr-2 mt-1" type="text" placeholder="stock ticker symbol" required>
+	      		<button class="btn btn-success mt-1" type="submit">Search</button>
+    		</form>
+		</nav>
+
+		<div class="container p-5">
+			{% include 'main/messages.html' %}
+			{% block body %}
+			{% endblock %}
+		</div>
+
+		<footer id="sticky-footer" class="bg-light">
+    		<div class="container text-center">
+     			<small>Data provided for free by <a href="https://newsapi.org" target="_blank">NewsAPI.org</a> and <a href="https://iexcloud.io/" target="_blank">IEX</a>.</small>
+   	 		</div>
+  		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</body>
+</html>

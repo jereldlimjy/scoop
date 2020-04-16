@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+	Home
+{% endblock %}
+
+{% block body %}
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			FB.XFBML.parse();
+		})
+	</script>
+	<div class="text-center mb-3">
+		<h2>tech stories</h2>
+	</div>
+	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+		<li class="nav-item">
+	    	<a class="nav-link active h3" id="pills-popular-tab" data-toggle="pill" href="#pills-popular" role="tab" aria-controls="pills-popular" aria-selected="true">popular</a>
+	  	</li>
+	  	<li class="nav-item">
+	    	<a class="nav-link h3" id="pills-latest-tab" data-toggle="pill" href="#pills-latest" role="tab" aria-controls="pills-latest" aria-selected="false" onclick="run()">latest</a>
+	  	</li>
+	  	<li class="nav-item">
+	    	<a class="nav-link h3" id="pills-relevant-tab" data-toggle="pill" href="#pills-relevant" role="tab" aria-controls="pills-relevant" aria-selected="false">relevant</a>
+	  	</li>
+	</ul>
+
+	<div class="tab-content" id="pills-tabContent">
+		<div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
+	  		{% for article in popular_articles %}
+			<div class="card mb-3 border-0">
+				<div class="row no-gutters">
+			    	<div class="col-lg-4">
+			      		<img src="{{ article.urlToImage }}" class="card-img" onerror="this.onerror=null;this.src='https://i.chzbgr.com/full/6486163968/hF3BC25F1/attachment-link-y-u-no-available';">
+			    	</div>
+			    	<div class="col-lg-8">
+			    		<div class="card-body">
+				        	<h5 class="card-title"><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h5>
+				        	<p class="card-text">{{ article.description }}</p>
+				        	<p class="card-text"><small class="text-muted">{{ article.source.name }} | {{ article.publishedAt }}</small></p>
+
+				        	<div class="fb-share-button" data-href="{{ article.url }}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+			    		</div>
+			    	</div>
+			  	</div>
+			</div>
+			{% endfor %}
+	  	</div>
+
+	  	<div class="tab-pane fade" id="pills-latest" role="tabpanel" aria-labelledby="pills-latest-tab">
+	  		{% for article in latest_articles %}
+			<div class="card mb-3 border-0">
+				<div class="row no-gutters">
+			    	<div class="col-lg-4">
+			      		<img src="{{ article.urlToImage }}" class="card-img" onerror="this.onerror=null;this.src='https://i.chzbgr.com/full/6486163968/hF3BC25F1/attachment-link-y-u-no-available';">
+			    	</div>
+			    	<div class="col-lg-8">
+			    		<div class="card-body">
+				        	<h5 class="card-title"><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h5>
+				        	<p class="card-text">{{ article.description }}</p>
+				        	<p class="card-text"><small class="text-muted">{{ article.source.name }} | {{ article.publishedAt }}</small></p>
+
+				        	<div class="fb-share-button" data-href="{{ article.url }}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+			    		</div>
+			    	</div>
+			  	</div>
+			</div>
+			{% endfor %}
+	  	</div>
+
+	  	<div class="tab-pane fade" id="pills-relevant" role="tabpanel" aria-labelledby="pills-relevant-tab">
+	  		{% for article in relevant_articles %}
+			<div class="card mb-3 border-0">
+				<div class="row no-gutters">
+			    	<div class="col-lg-4">
+			      		<img src="{{ article.urlToImage }}" class="card-img" onerror="this.onerror=null;this.src='https://i.chzbgr.com/full/6486163968/hF3BC25F1/attachment-link-y-u-no-available';">
+			    	</div>
+			    	<div class="col-lg-8">
+			    		<div class="card-body">
+				        	<h5 class="card-title"><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h5>
+				        	<p class="card-text">{{ article.description }}</p>
+				        	<p class="card-text"><small class="text-muted">{{ article.source.name }} | {{ article.publishedAt }}</small></p>
+
+				        	<div class="fb-share-button" data-href="{{ article.url }}" data-layout="button_count" data-size="small"></div>
+			    		</div>
+			    	</div>
+			  	</div>
+			</div>
+			{% endfor %}
+	  	</div>
+	</div>
+{% endblock %}

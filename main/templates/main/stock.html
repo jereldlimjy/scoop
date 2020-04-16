@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+	{{ symbol }}
+{% endblock %}
+
+{% block body %}
+	<script src="{% static 'main/stock.js' %}"></script>
+
+	<div class="text-center mb-2">
+		<h2>{{ name }}</h2>
+		<h3>({{ exchange }}: {{ symbol }})</h3>
+	</div>
+
+	<div class="text-center mb-2">
+		<span class="h2">${{ price }} </span>
+		<span class="h3 {{ colour }}">&nbsp;{{ change }} ({{ changePercent }}%)</span>
+	</div>
+
+	<div class="text-center mb-4">
+		<button onclick="show()" class="btn btn-sm btn-secondary">more info</button>
+		<div class="info mt-3 text-left border p-2" style="font-family: sans-serif;">
+			<dl class="row">
+  				<dt class="col-sm-3">Sector</dt>
+  				<dd class="col-sm-9">{{ sector }}</dd>
+
+  				<dt class="col-sm-3">Industry</dt>
+  				<dd class="col-sm-9">{{ industry }}</dd>
+
+  				<dt class="col-sm-3">Description</dt>
+  				<dd class="col-sm-9">{{ description }}</dd>
+
+  				<dt class="col-sm-3">Employees</dt>
+  				<dd class="col-sm-9">{{ employees }}</dd>
+
+  				<dt class="col-sm-3">Website</dt>
+  				<dd class="col-sm-9"><a href="{{ website }}" target="_blank">{{ website }}</a></dd>
+  			</dl>
+		</div>
+	</div>
+
+	<div class="text-center mb-3">
+		<h2>related news</h2>
+	</div>
+
+	{% for article in news %}
+	<div class="card mb-3 border-0">
+		<div class="row no-gutters">
+			<div class="col-lg-4">
+		  		<img src="{{ article.image }}" class="card-img" onerror="this.onerror=null;this.src='https://i.chzbgr.com/full/6486163968/hF3BC25F1/attachment-link-y-u-no-available';">
+	 		</div>
+			<div class="col-lg-8">
+				<div class="card-body">
+	    			<h5 class="card-title"><a href="{{ article.url }}" target="_blank">{{ article.headline }}</a></h5>
+						<p class="card-text">{{ article.summary }}</p>
+						<p class="card-text"><small class="text-muted">{{ article.source }} | {{ article.datetime }}</small></p>
+
+						<div class="fb-share-button" data-href="{{ article.url }}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+{% endblock %}

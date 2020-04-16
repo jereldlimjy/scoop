@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+	Stocks
+{% endblock %}
+
+{% block body %}
+	<div class="text-center mb-4">
+		<h2>stock search</h2>
+	</div>
+
+	<div class="d-flex justify-content-center">
+		<form action="{% url 'search' %}" method="post">
+			{% csrf_token %}
+			<div class="form-group form-inline">
+				<label for="search" class="mr-2 mb-2">Enter a stock ticker symbol:</label>
+				<input name="symbol" type="text" class="form-control mr-3 mb-2" id="search" placeholder="symbol" required>
+				<button type="submit" class="btn btn-success mb-2">Search</button>
+			</div>
+		</form>
+	</div>
+{% endblock %}

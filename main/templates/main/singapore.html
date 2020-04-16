@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+	Singapore News
+{% endblock %}
+
+{% block body %}
+	<div class="text-center mb-4">
+		<h2>Singapore news</h2>
+	</div>
+
+	{% for article in articles %}
+		<div class="card mb-3 border-0">
+			<div class="row no-gutters">
+			   	<div class="col-lg-4">
+			  		<img src="{{ article.urlToImage }}" class="card-img" onerror="this.onerror=null;this.src='https://i.chzbgr.com/full/6486163968/hF3BC25F1/attachment-link-y-u-no-available';">
+			   	</div>
+			   	<div class="col-lg-8">
+			   		<div class="card-body">
+				       	<h5 class="card-title"><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h5>
+				       	<p class="card-text">{{ article.description }}</p>
+				       	<p class="card-text"><small class="text-muted">{{ article.source.name }} | {{ article.publishedAt }}</small></p>
+
+				       	<div class="fb-share-button" data-href="{{ article.url }}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+			   		</div>
+			   	</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}
